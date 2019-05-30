@@ -16,6 +16,7 @@
 //                                    PROTOTYPES
 //===========================================================================================
 
+//===========================================================================================
 /**
  * \brief Determines if row and column are within the
  *        bounds of the board
@@ -25,8 +26,10 @@
  * 
  * \return A boolean value
  **/
+//===========================================================================================
 bool isValid(int row, int col);
 
+//===========================================================================================
 /**
  * \brief This function declares a two dimensional array
  *        and populate it with a single integer value,
@@ -41,8 +44,10 @@ bool isValid(int row, int col);
  * 
  * \return Nothing
  **/
+//===========================================================================================
 void knights_tour(int row, int col);
 
+//===========================================================================================
 /**
  * \brief This function is called recursively to find a valid
  *        knights tour path.
@@ -55,8 +60,10 @@ void knights_tour(int row, int col);
  * \return Nothing
  *        
  **/ 
+//===========================================================================================
 void find_path(int board[8][8], int row, int col, int position);
 
+//===========================================================================================
 /**
  * \brief Prints the board to the console window
  * 
@@ -65,7 +72,7 @@ void find_path(int board[8][8], int row, int col, int position);
  * 
  * \return Nothing
  **/
-
+//===========================================================================================
 void print_board(int board[8][8]);
 
 //===========================================================================================
@@ -74,14 +81,8 @@ void print_board(int board[8][8]);
 
 int main(int argc, char **argv)
 {
-  if (argc > 1) 
+  if (argc == 3) 
   {
-    if (argc == 2)
-    {
-      std::cout << "Need 2 command line arguments!\nProgram terminated!" << std::endl;
-      return 0;
-    }
-
     std::stringstream ss;
     ss << argv[1];
     int row, col;
@@ -114,12 +115,12 @@ int main(int argc, char **argv)
 
 bool isValid(int row, int col)
 {
-  if (row < 0 || row > 8 || col < 0 || row > 8)
+  if (row >= 0 || row < 8 || col >= 0 || row < 8)
   {
-    return false;
+    return true;
   }
 
-  return true;
+  return false;
 }
 
 //===========================================================================================
@@ -154,27 +155,7 @@ void find_path(int board[8][8], int row, int col, int position)
 
   board[row][col] = position;
 
-  if (isValid(row - 2, col -1) && board[row - 2][col - 1] == -1)
-  {
-    find_path(board, row - 2, col - 1, position + 1);
-  }
-
-  else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
-  {
-    find_path(board, row - 1, col - 2, position + 1);
-  }
-
-  else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
-  {
-    find_path(board, row + 1, col - 2, position + 1);
-  }
-
-  else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
-  {
-    find_path(board, row + 2, col - 1, position + 1);
-  }
-
-  else if (isValid(row + 2, col + 1) && board[row + 2][col + 1] == -1)
+  if (isValid(row + 2, col + 1) && board[row + 2][col + 1] == -1)
   {
     find_path(board, row + 2, col + 1, position + 1);
   }
@@ -194,9 +175,29 @@ void find_path(int board[8][8], int row, int col, int position)
     find_path(board, row - 2, col + 1, position + 1);
   }
 
+  else if (isValid(row - 2, col - 1) && board[row - 2][col - 1] == -1)
+  {
+    find_path(board, row - 2, col - 1, position + 1);
+  }
+
+  else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
+  {
+    find_path(board, row - 1, col -  2, position + 1);
+  }
+
+  else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
+  {
+    find_path(board, row + 1, col - 2, position + 1);
+  }
+
+  else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
+  {
+    find_path(board, row + 2, col - 1, position + 1);
+  }
+
   else
   {
-    board[row][col] = 0;
+    board[row][col] = -1;
   }
 }
 
