@@ -2,7 +2,7 @@ class Main
 {
   public static boolean check_input(int row, int col)
   {
-    if (row >= 0 || row < 8 || col >= 0 || col < 8)
+    if (row >= 0 && row < 8 && col >= 0 && col < 8)
     {
       return true;
     }

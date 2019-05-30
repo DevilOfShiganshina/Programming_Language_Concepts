@@ -9,21 +9,68 @@
  **/
 
 #include <iostream>
-#include <sstream>
+#include <sstream> //
 #include <string>
 
-int count = 0;
+//===========================================================================================
+//                                    PROTOTYPES
+//===========================================================================================
 
 /**
- * \brief Determines 
+ * \brief Determines if row and column are within the
+ *        bounds of the board
+ * 
+ * \param Two integer value, which represents the row
+ *        and the column
+ * 
+ * \return A boolean value
  **/
 bool isValid(int row, int col);
 
+/**
+ * \brief This function declares a two dimensional array
+ *        and populate it with a single integer value,
+ *        so it is easier to determine if a cell in the
+ *        board has been visited or not. Then "find_path"
+ *        function is called which finds a path. Lastly
+ *        the board is printed to the console window by
+ *        calling the "print_board" function.
+ * 
+ * \param Two integer values, which is either user specified
+ *        or default row and column values.
+ * 
+ * \return Nothing
+ **/
 void knights_tour(int row, int col);
 
+/**
+ * \brief This function is called recursively to find a valid
+ *        knights tour path.
+ * 
+ * \param Four integer values: first is the board itself, then
+ *        the new row and column values, and lastly the position
+ *        number which is placed in a cell to signify that cell
+ *        is the N number of step in the path
+ * 
+ * \return Nothing
+ *        
+ **/ 
 void find_path(int board[8][8], int row, int col, int position);
 
+/**
+ * \brief Prints the board to the console window
+ * 
+ * \param A two dimensional array which represents the chess
+ *        board.
+ * 
+ * \return Nothing
+ **/
+
 void print_board(int board[8][8]);
+
+//===========================================================================================
+//                                    MAIN
+//===========================================================================================
 
 int main(int argc, char **argv)
 {
@@ -47,6 +94,11 @@ int main(int argc, char **argv)
     {
       knights_tour(row, col);
     }
+
+    else
+    {
+      knights_tour(0, 0);
+    }
   }
 
   else
@@ -56,15 +108,23 @@ int main(int argc, char **argv)
   return 0;
 }
 
+//===========================================================================================
+//                                    ISVALID
+//===========================================================================================
+
 bool isValid(int row, int col)
 {
-  if (row < 0 || row >= 8 || col < 0 || row >= 8)
+  if (row < 0 || row > 8 || col < 0 || row > 8)
   {
     return false;
   }
 
   return true;
 }
+
+//===========================================================================================
+//                                    KNIGHTS_TOUR
+//===========================================================================================
 
 void knights_tour(int row, int col)
 {
@@ -74,7 +134,7 @@ void knights_tour(int row, int col)
   {
     for (int j = 0; j < 8; j++)
     {
-      board[i][j] = 0;
+      board[i][j] = -1;
     }
   }
 
@@ -82,29 +142,67 @@ void knights_tour(int row, int col)
   print_board(board);
 }
 
+//===========================================================================================
+//                                    FIND_PATH
+//===========================================================================================
+
 void find_path(int board[8][8], int row, int col, int position)
 {
-  count++;
-  board[row][col] = position;
-
-  if (position >= 64) { return; }
-
-  int moveRow[] = { 2, 1, -1, -2, -2, -1, 1, 2 , 2 };
-  int moveCol[] = { 1, 2, 2, 1, -1, -2, -2, -1, 1 };
-
-  for (int i = 0; i < 8; i++)
-  {
-    int newRow = row + moveRow[i];
-    int newCol = col + moveCol[i];
-
-    if (isValid(newRow, newCol) && !board[newRow][newCol])
-    {
-      find_path(board, newRow, newCol, position + 1);
-    }
+  if (position > 64) {
+    return;
   }
 
-  board[col][row] = 0;
+  board[row][col] = position;
+
+  if (isValid(row - 2, col -1) && board[row - 2][col - 1] != -1)
+  {
+    find_path(board, row - 2, col - 1, position + 1);
+  }
+
+  else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] != -1)
+  {
+    find_path(board, row - 1, col - 2, position + 1);
+  }
+
+  else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] != -1)
+  {
+    find_path(board, row + 1, col - 2, position + 1);
+  }
+
+  else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] != -1)
+  {
+    find_path(board, row + 2, col - 1, position + 1);
+  }
+
+  else if (isValid(row + 2, col + 1) && board[row + 2][col + 1] != -1)
+  {
+    find_path(board, row + 2, col + 1, position + 1);
+  }
+
+  else if (isValid(row + 1, col + 2) && board[row + 1][col + 2] != -1)
+  {
+    find_path(board, row + 1, col + 2, position + 1);
+  }
+
+  else if (isValid(row - 1, col + 2) && board[row - 1][col + 2] != -1)
+  {
+    find_path(board, row - 1, col + 2, position + 1);
+  }
+
+  else if (isValid(row - 2, col + 1) && board[row - 2][col + 1] != -1)
+  {
+    find_path(board, row - 2, col + 1, position + 1);
+  }
+
+  else
+  {
+    board[row][col] = 0;
+  }
 }
+
+//===========================================================================================
+//                                    PRINT_BOARD
+//===========================================================================================
 
 void print_board(int board[8][8])
 {
@@ -116,6 +214,4 @@ void print_board(int board[8][8])
     }
     std::cout << std::endl << std::endl;
   }
-
-  std::cout << count << std::endl;
 }
