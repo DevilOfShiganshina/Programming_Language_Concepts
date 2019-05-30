@@ -154,42 +154,42 @@ void find_path(int board[8][8], int row, int col, int position)
 
   board[row][col] = position;
 
-  if (isValid(row - 2, col -1) && board[row - 2][col - 1] != -1)
+  if (isValid(row - 2, col -1) && board[row - 2][col - 1] == -1)
   {
     find_path(board, row - 2, col - 1, position + 1);
   }
 
-  else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] != -1)
+  else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
   {
     find_path(board, row - 1, col - 2, position + 1);
   }
 
-  else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] != -1)
+  else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
   {
     find_path(board, row + 1, col - 2, position + 1);
   }
 
-  else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] != -1)
+  else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
   {
     find_path(board, row + 2, col - 1, position + 1);
   }
 
-  else if (isValid(row + 2, col + 1) && board[row + 2][col + 1] != -1)
+  else if (isValid(row + 2, col + 1) && board[row + 2][col + 1] == -1)
   {
     find_path(board, row + 2, col + 1, position + 1);
   }
 
-  else if (isValid(row + 1, col + 2) && board[row + 1][col + 2] != -1)
+  else if (isValid(row + 1, col + 2) && board[row + 1][col + 2] == -1)
   {
     find_path(board, row + 1, col + 2, position + 1);
   }
 
-  else if (isValid(row - 1, col + 2) && board[row - 1][col + 2] != -1)
+  else if (isValid(row - 1, col + 2) && board[row - 1][col + 2] == -1)
   {
     find_path(board, row - 1, col + 2, position + 1);
   }
 
-  else if (isValid(row - 2, col + 1) && board[row - 2][col + 1] != -1)
+  else if (isValid(row - 2, col + 1) && board[row - 2][col + 1] == -1)
   {
     find_path(board, row - 2, col + 1, position + 1);
   }
