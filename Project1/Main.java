@@ -1,6 +1,27 @@
 class Main
 {
-  public static boolean check_input(int row, int col)
+  public static void main(String[] args)
+  {
+    if (args.length == 2)
+    {
+      if (isValid(Integer.parseInt(args[1]), Integer.parseInt(args[1])))
+      {
+        knights_tour(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+      }
+
+      else
+      {
+        knights_tour(0, 0);
+      }
+    }
+
+    else 
+    {
+      knights_tour(0, 0);
+    }
+  }
+
+  public static boolean isValid(int row, int col)
   {
     if (row >= 0 && row < 8 && col >= 0 && col < 8)
     {
@@ -12,27 +33,94 @@ class Main
 
   public static void knights_tour(int row, int col)
   {
-    System.out.println("Row: " + row);
-    System.out.println("Col: " + col);
-  }
-  public static void main(String[] args)
-  {
-    if (args.length > 0 && check_input(Integer.parseInt(args[0]), Integer.parseInt(args[1])))
-    {
-      if (args.length == 1)
-      {
-        knights_tour(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-      }
+    int[][] board = new int[8][8];
 
-      else 
+    for (int i = 0; i < 8; i++)
+    {
+      for (int j = 0; j < 8; j++)
       {
-        knights_tour(0, 0);
+        board[i][j] = -1;
       }
     }
 
-    else
+    find_path(board, row, col, 1);
+    print_board(board);
+  }
+
+  public static void find_path(int[][] board, int row, int col, int position)
+  {
+    if (position > 64)
     {
-      knights_tour(0, 0);
+      return;
+    }
+
+    boolean flag = false;
+
+    board[row][col] = position;
+
+    if (isValid(row + 2, col + 1) && board[row + 2][col + 1] == -1)
+    {
+      flag = true;
+      find_path(board, row + 2, col + 1, position + 1);
+    }
+
+    if (isValid(row + 1, col + 2) && board[row + 1][col + 2] == -1)
+    {
+      flag = true;
+      find_path(board, row + 1, col + 2, position + 1);
+    }
+
+    if (isValid(row - 1, col + 2) && board[row - 1][col + 2] == -1)
+    {
+      flag = true;
+      find_path(board, row - 1, col + 2, position + 1);
+    }
+
+    if (isValid(row - 2, col + 1) && board[row - 2][col + 1] == -1)
+    {
+      flag = true;
+      find_path(board, row - 2, col + 1, position + 1);
+    }
+
+    if (isValid(row - 2, col - 1) && board[row - 2][col - 1] == -1)
+    {
+      flag = true;
+      find_path(board, row - 2, col - 1, position + 1);
+    }
+
+    if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
+    {
+      flag = true;
+      find_path(board, row - 1, col - 2, position + 1);
+    }
+
+    if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
+    {
+      flag = true;
+      find_path(board, row + 1, col - 2, position + 1);
+    }
+
+    if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
+    {
+      flag = true;
+      find_path(board, row + 2, col - 1, position + 1);
+    }
+
+    if (flag == false)
+    {
+      board[row][col] = -1;
+    }
+  }
+
+  public static void print_board(int [][] board)
+  {
+    for (int i = 0; i < 8; i++)
+    {
+      for (int j = 0; j < 8; j++)
+      {
+        System.out.print(board[i][j] + "\t");
+      }
+      System.out.println("\n");
     }
   }
 }

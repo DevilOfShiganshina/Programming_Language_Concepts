@@ -8,9 +8,8 @@
  * Due Date:    June 5th, 2019
  **/
 
-#include <iostream>
-#include <sstream> //
-#include <string>
+#include <iostream> // Input / Output
+#include <sstream> // Stringstream, for converting command line arguments to integers
 
 //===========================================================================================
 //                                    PROTOTYPES
@@ -208,7 +207,7 @@ void find_path(int board[8][8], int row, int col, int position)
   if (flag == false)
   {
     board[row][col] = -1;
-  }
+  } 
 }
 
 //===========================================================================================
