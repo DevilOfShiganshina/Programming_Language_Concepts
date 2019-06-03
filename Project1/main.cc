@@ -90,7 +90,7 @@ int main(int argc, char **argv)
     ss << argv[2];
     ss >> col;
 
-    if (row >= 0 && row < 8 && col >= 0 && col < 8)
+    if (isValid(row, col))
     {
       knights_tour(row, col);
     }
