@@ -80,43 +80,43 @@ class Main
       find_path(board, row + 2, col + 1, position + 1);
     }
 
-    if (isValid(row + 1, col + 2) && board[row + 1][col + 2] == -1)
+    else if (isValid(row + 1, col + 2) && board[row + 1][col + 2] == -1)
     {
       flag = true;
       find_path(board, row + 1, col + 2, position + 1);
     }
 
-    if (isValid(row - 1, col + 2) && board[row - 1][col + 2] == -1)
+    else if (isValid(row - 1, col + 2) && board[row - 1][col + 2] == -1)
     {
       flag = true;
       find_path(board, row - 1, col + 2, position + 1);
     }
 
-    if (isValid(row - 2, col + 1) && board[row - 2][col + 1] == -1)
+    else if (isValid(row - 2, col + 1) && board[row - 2][col + 1] == -1)
     {
       flag = true;
       find_path(board, row - 2, col + 1, position + 1);
     }
 
-    if (isValid(row - 2, col - 1) && board[row - 2][col - 1] == -1)
+    else if (isValid(row - 2, col - 1) && board[row - 2][col - 1] == -1)
     {
       flag = true;
       find_path(board, row - 2, col - 1, position + 1);
     }
 
-    if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
+    else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
     {
       flag = true;
       find_path(board, row - 1, col - 2, position + 1);
     }
 
-    if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
+    else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
     {
       flag = true;
       find_path(board, row + 1, col - 2, position + 1);
     }
 
-    if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
+    else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
     {
       flag = true;
       find_path(board, row + 2, col - 1, position + 1);
