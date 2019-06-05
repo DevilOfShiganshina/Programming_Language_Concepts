@@ -2,14 +2,14 @@ Recursive Descent Parsing\
 Consider the following BNF grammar:
 
 ```
-A -> I = E\
-E -> P O P | P\
-O -> + | - | * | / | **\
-P -> I | L | UI | UL | (E)\
-U -> + | - | !\
-I -> C | CI\
-C -> a | b | ... | y | z\
-L -> D | DL\
+A -> I = E
+E -> P O P | P
+O -> + | - | * | / | **
+P -> I | L | UI | UL | (E)
+U -> + | - | !
+I -> C | CI
+C -> a | b | ... | y | z
+L -> D | DL
 D -> 0 | 1 | ... | 8 | 9
 ```
         
