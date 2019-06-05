@@ -207,7 +207,7 @@ void find_path(int board[8][8], int row, int col, int position)
   if (flag == false)
   {
     board[row][col] = -1;
-  } 
+  }
 }
 
 //===========================================================================================
