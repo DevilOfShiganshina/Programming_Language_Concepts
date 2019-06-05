@@ -29,3 +29,5 @@ not have to handle whitespace when parsing the string, i.e. " "\
 and similiar are illegal characters in this language. All strings\
 should read from a file called "input.txt" and written to a file\
 called "output.txt".
+
+##I/O FILES ARE NOT TO BE UPLOADED TO VOCAREUM
