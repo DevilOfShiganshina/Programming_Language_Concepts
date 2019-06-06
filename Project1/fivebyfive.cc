@@ -5,7 +5,7 @@ bool isValid(int row, int col);
 
 void knights_tour(int row, int col);
 
-void find_path(int board[5][5], int row, int col, int position);
+int find_path(int board[5][5], int row, int col, int position);
 
 void print_board(int board[5][5]);
 
@@ -20,18 +20,15 @@ int main(int argc, char **argv)
     ss.clear();
     ss << argv[2];
     ss >> col;
-
     if (isValid(row, col))
     {
       knights_tour(row, col);
     }
-
     else
     {
       knights_tour(0, 0);
     }
   }
-
   else
   {
     knights_tour(0, 0);
@@ -45,14 +42,12 @@ bool isValid(int row, int col)
   {
     return true;
   }
-
   return false;
 }
 
 void knights_tour(int row, int col)
 {
   int board[5][5];
-
   for (int i = 0; i < 5; i++)
   {
     for (int j = 0; j < 5; j++)
@@ -60,29 +55,26 @@ void knights_tour(int row, int col)
       board[i][j] = -1;
     }
   }
-
   find_path(board, row, col, 1);
   print_board(board);
 }
 
-void find_path(int board[5][5], int row, int col, int position)
+int find_path(int board[5][5], int row, int col, int position)
 {
-  if (position > 25) {
-    return;
+  if (position > 25)
+  {
+    return true;
   }
-  int moveSetRow[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
-  int moveSetCol[] = { 1, 2, 2, 1, -1, -2, -2 , -1 };
 
-  board[row][col] = position;
-  bool flag = false;
-
-  for (int i = 0; i < 8; i++) {
-    if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1) {
-      flag = true;
+  int moveSetRow[] = {2, 1, -1, -2, -2, -1, 1, 2};
+  int moveSetCol[] = {1, 2, 2, 1, -1, -2, -2, -1};
+  for (int i = 0; i < 8; i++)
+  {
+    if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
+    {
+      board[row][col] = position;
       find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1);
     }
-  } if (!flag) {
-    board[row][col] = -1;
   }
 }
 
