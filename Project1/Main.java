@@ -63,69 +63,31 @@ class Main
   //                                    FIND_PATH
   //===========================================================================================
 
-  public static void find_path(int[][] board, int row, int col, int position)
+  public static boolean find_path(int[][] board, int row, int col, int position)
   {
     if (position > 64)
     {
-      return;
+      return true;
     }
 
-    boolean flag = false;
+    int moveSetRow[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+    int moveSetCol[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
 
-    board[row][col] = position;
-
-    if (isValid(row + 2, col + 1) && board[row + 2][col + 1] == -1)
+    for (int i = 0; i < 8; i++)
     {
-      flag = true;
-      find_path(board, row + 2, col + 1, position + 1);
+      if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
+      {
+        board[row + moveSetRow[i]][col + moveSetCol[i]] = position;
+        if(find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1) == true)
+        {
+          return true;
+        }
+      }
     }
 
-    else if (isValid(row + 1, col + 2) && board[row + 1][col + 2] == -1)
-    {
-      flag = true;
-      find_path(board, row + 1, col + 2, position + 1);
-    }
+    board[row][col] = -1;
 
-    else if (isValid(row - 1, col + 2) && board[row - 1][col + 2] == -1)
-    {
-      flag = true;
-      find_path(board, row - 1, col + 2, position + 1);
-    }
-
-    else if (isValid(row - 2, col + 1) && board[row - 2][col + 1] == -1)
-    {
-      flag = true;
-      find_path(board, row - 2, col + 1, position + 1);
-    }
-
-    else if (isValid(row - 2, col - 1) && board[row - 2][col - 1] == -1)
-    {
-      flag = true;
-      find_path(board, row - 2, col - 1, position + 1);
-    }
-
-    else if (isValid(row - 1, col - 2) && board[row - 1][col - 2] == -1)
-    {
-      flag = true;
-      find_path(board, row - 1, col - 2, position + 1);
-    }
-
-    else if (isValid(row + 1, col - 2) && board[row + 1][col - 2] == -1)
-    {
-      flag = true;
-      find_path(board, row + 1, col - 2, position + 1);
-    }
-
-    else if (isValid(row + 2, col - 1) && board[row + 2][col - 1] == -1)
-    {
-      flag = true;
-      find_path(board, row + 2, col - 1, position + 1);
-    }
-
-    if (flag == false)
-    {
-      board[row][col] = -1;
-    }
+    return false;
   }
 
   //===========================================================================================

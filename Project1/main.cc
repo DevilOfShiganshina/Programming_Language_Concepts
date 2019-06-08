@@ -114,12 +114,7 @@ int main(int argc, char **argv)
 
 bool isValid(int row, int col)
 {
-  if (row >= 0 && row < 8 && col >= 0 && col < 8)
-  {
-    return true;
-  }
-
-  return false;
+  return (row >= 0 && row < 8 && col >= 0 && col < 8);
 }
 
 //===========================================================================================
@@ -137,8 +132,8 @@ void knights_tour(int row, int col)
       board[i][j] = -1;
     }
   }
-
-  find_path(board, row, col, 1);
+  board[0][0] = 1;
+  find_path(board, row, col, 2);
   print_board(board);
 }
 
@@ -148,7 +143,8 @@ void knights_tour(int row, int col)
 
 int find_path(int board[8][8], int row, int col, int position)
 {
-  if (position > 64) {
+  if (position > 64)
+  {
     return true;
   }
 
@@ -160,18 +156,14 @@ int find_path(int board[8][8], int row, int col, int position)
     if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
     {
       board[row + moveSetRow[i]][col + moveSetCol[i]] = position;
-      if (find_path(board, row + moveSetRow[i], col + moveSetCol[i], position++) == true)
+      if (find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1) == true)
       {
         return true;
-      }
-
-      else
-      {
-        board[row + moveSetRow[i]][col + moveSetCol[i]] = -1;
       }
     }
   }
 
+  board[row][col] = -1;
   return false;
 }
 
