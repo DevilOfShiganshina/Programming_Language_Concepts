@@ -160,10 +160,15 @@ int find_path(int board[8][8], int row, int col, int position)
       {
         return true;
       }
+
+      else
+      {
+        board[row + moveSetRow[i]][col + moveSetCol[i]] = -1;
+      }
     }
   }
-
-  board[row][col] = -1;
+  
+  //board[row][col] = -1;
   return false;
 }
 

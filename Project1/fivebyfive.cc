@@ -55,7 +55,8 @@ void knights_tour(int row, int col)
       board[i][j] = -1;
     }
   }
-  find_path(board, row, col, 1);
+  board[0][0] = 1;
+  find_path(board, row, col, 2);
   print_board(board);
 }
 
@@ -73,9 +74,15 @@ int find_path(int board[5][5], int row, int col, int position)
     if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
     {
       board[row][col] = position;
-      find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1);
+      if (find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1) == true)
+      {
+        return true;
+      }
     }
   }
+
+  board[row][col] = -1;
+  return false;
 }
 
 void print_board(int board[5][5])
