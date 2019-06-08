@@ -78,10 +78,7 @@ class Main
       if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
       {
         board[row + moveSetRow[i]][col + moveSetCol[i]] = position;
-        if(find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1) == true)
-        {
-          return true;
-        }
+        find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1);
       }
     }
 
