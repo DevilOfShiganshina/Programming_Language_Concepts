@@ -9,7 +9,6 @@
  **/
 
 #include <iostream> // Input / Output
-#include <sstream> // Stringstream, for converting command line arguments to integers
 
 //===========================================================================================
 //                                    PROTOTYPES
@@ -80,31 +79,8 @@ void print_board(int board[8][8]);
 
 int main(int argc, char **argv)
 {
-  if (argc == 3) 
-  {
-    std::stringstream ss;
-    ss << argv[1];
-    int row, col;
-    ss >> row;
-    ss.clear();
-    ss << argv[2];
-    ss >> col;
+  knights_tour(0,0);
 
-    if (isValid(row, col))
-    {
-      knights_tour(row, col);
-    }
-
-    else
-    {
-      knights_tour(0, 0);
-    }
-  }
-
-  else
-  {
-    knights_tour(0, 0);
-  }
   return 0;
 }
 

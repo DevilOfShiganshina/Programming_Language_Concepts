@@ -6,23 +6,7 @@ class Main
 
   public static void main(String[] args)
   {
-    if (args.length == 2)
-    {
-      if (isValid(Integer.parseInt(args[1]), Integer.parseInt(args[1])))
-      {
-        knights_tour(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-      }
-
-      else
-      {
-        knights_tour(0, 0);
-      }
-    }
-
-    else 
-    {
-      knights_tour(0, 0);
-    }
+    knights_tour(0, 0);
   }
 
   //===========================================================================================
@@ -54,8 +38,8 @@ class Main
         board[i][j] = -1;
       }
     }
-
-    find_path(board, row, col, 1);
+    board[0][0] = 1;
+    find_path(board, row, col, 2);
     print_board(board);
   }
 
@@ -78,11 +62,17 @@ class Main
       if (isValid(row + moveSetRow[i], col + moveSetCol[i]) && board[row + moveSetRow[i]][col + moveSetCol[i]] == -1)
       {
         board[row + moveSetRow[i]][col + moveSetCol[i]] = position;
-        find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1);
+        if(find_path(board, row + moveSetRow[i], col + moveSetCol[i], position + 1) == true)
+        {
+          return true;
+        }
+
+        else
+        {
+          board[row + moveSetRow[i]][col + moveSetCol[i]] = -1;
+        }
       }
     }
-
-    board[row][col] = -1;
 
     return false;
   }
