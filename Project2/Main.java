@@ -107,7 +107,7 @@ class Main {
       
       else
       {
-        if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/')
+        if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/' || (str.charAt(i) == '*' && str.charAt(++i) == '*'))
         {
           i++;
           if (P(1) != -1)
