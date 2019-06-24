@@ -44,17 +44,13 @@ int main()
   std::ofstream out;
   out.open("output.txt");
 
-  while (!in.eof())
-  {
+  while (!in.eof()) {
     i = 0;
     j = 0;
     in >> str;
-    if (A() != -1 && i == str.length())
-    {
+    if (A() != -1 && i == str.length()) {
       out << str << " is in the language!" << std::endl;
-    }
-    else
-    {
+    } else {
       out << str << " is not in the language!" << std::endl;
     }
   }
@@ -115,7 +111,7 @@ int E()
     }
     else
     {
-      if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/' || (str[i] == '*' && str[i+1] == '*'))
+      if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/')
       {
         i++;
         if (P(1) != -1)
@@ -317,17 +313,14 @@ int UI()
 //                                    UL
 //===========================================================================================
 
-int UL()
-{
+int UL() {
   j = i;
   int x = i;
 
-  if (j < str.length() && (str[j] == '+' || str[j] == '-' || str[j] == '!'))
-  {
+  if (j < str.length() && (str[j] == '+' || str[j] == '-' || str[j] == '!')) {
     j++;
     i = j;
-    if (L() != -1)
-    {
+    if (L() != -1) {
       i = j;
       return 0;
     }
